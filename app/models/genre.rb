@@ -8,7 +8,7 @@ class Genre < ActiveHash::Base
 ]
 
   include AdtiveHash::Associations
-  has_many :articles
+  has_many :events
 
 end
 
