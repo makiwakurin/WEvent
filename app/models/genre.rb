@@ -7,7 +7,7 @@ class Genre < ActiveHash::Base
   { id: 5, name: '旅行' }
 ]
 
-  include AdtiveHash::Associations
+  include ActiveHash::Associations
   has_many :events
 
 end
