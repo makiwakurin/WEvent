@@ -29,7 +29,7 @@
 
   <div class="field">
     <%= f.label :gender_id %><br />
-    <%= f.text_area :gender_id, autofocus: true, autocomplete: "gender" %>
+    <%= f.select :gender_id, [["男", 1], ["女", 2]], include_blank: "選択して下さい" %>
   </div>  
 
   <div class="field">
@@ -49,7 +49,7 @@
 
     <div class="field">
     <%= f.label :prefecture_id %><br />
-    <%= f.text_field :prefecture_id, autofocus: true, autocomplete: "prefecture" %>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}) %>
   </div>  
 
       <div class="field">
