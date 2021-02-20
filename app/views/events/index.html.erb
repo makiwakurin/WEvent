@@ -19,7 +19,7 @@
         <span class="event_description">
           <%= event.description %>
         </span>
-        <%= %>
+        <%= link_to 'タスク作成', new_event_task_path(event) %>
         <%= @tasks %>
     </div>
   <% end %>
