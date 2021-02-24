@@ -16,4 +16,7 @@ class User < ApplicationRecord
     validates :city
     validates :address
   end
+
+  has_many :room_users
+  has_many :rooms, through: :room_users
 end
