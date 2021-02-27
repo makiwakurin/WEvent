@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  attr_accessor :user_id, :event_id
   belongs_to :user
   belongs_to :event
 
