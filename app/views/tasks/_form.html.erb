@@ -1,0 +1,21 @@
+<%= form_with(model: [@event, @task], local: true) do |form| %>
+  <%= form.text_field :name, placeholder: '課題名、30文字以内' %>
+  <%= form.text_area :description, placeholder: 'タスク詳細、200文字以内'%>
+  <select name="user_id">
+  <option value="">タスク担当を選択してください</option>
+    <% User.all.each do |user| %>
+      <option value= <%= user.id %>><%= user.nickname %></option>
+    <% end %>
+  </select>
+  <p>締め切り：</p>
+  <%= raw sprintf(
+                  form.date_select(
+                    :deadline,
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: 2021,
+                    end_year: (Time.now.year + 5),
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+  <%= form.submit '送信' %>
+<% end %>
