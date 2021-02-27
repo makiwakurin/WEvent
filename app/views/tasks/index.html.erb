@@ -4,8 +4,8 @@
     <%= task.user.nickname%>
     <%= task.deadline%>
     <%= link_to '詳細', event_task_path(@event.id, task.id), method: :get%>
-    <%= link_to event_task_path(@event.id, task.id), '編集'%>
-    <%= link_to event_task_path(@event.id, task.id), 'タスクを消去', method: :destroy %>
+    <%= link_to '編集', event_task_path(@event.id, task.id) %>
+    <%= link_to 'タスクを消去', event_task_path(@event.id, task.id), method: :delete %>
   <% end %>
 <%# <% else %>
   <%# <% %>
