@@ -1,0 +1,8 @@
+<div class="task-body">
+  <%= @task.name %>
+    <%= @task.user.nickname%>
+    <%= @task.deadline%>
+    <%= @task.description %>
+    <%= link_to event_task_path(@event.id, @task.id), '編集'%>
+    <%= link_to event_task_path(@event.id, @task.id), 'タスクを消去', method: :destroy %>
+</div>
