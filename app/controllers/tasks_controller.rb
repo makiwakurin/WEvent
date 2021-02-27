@@ -10,6 +10,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to index
+  end
+
   private
   def task_params
     params.require(:task).permit(:name, :description, :deadline, :user_id).merge(event_id: params[:event_id])
