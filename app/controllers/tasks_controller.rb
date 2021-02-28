@@ -11,6 +11,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.event = @event
+    @task.user = User.find(params[:user_id])
     binding.pry
     if @task.valid?
       @task.save
@@ -46,7 +48,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :user_id).merge(event_id: params[:event_id])
+    params.require(:task).permit(:name, :description, :deadline, :event_id, :user_id)
   end
 
   def define_event

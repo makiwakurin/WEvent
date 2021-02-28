@@ -1,4 +1,3 @@
-<%= form_with(model: [@event, @task], local: true) do |form| %>
   <%= form.text_field :name, placeholder: '課題名、30文字以内' %>
   <%= form.text_area :description, placeholder: 'タスク詳細、200文字以内'%>
   <select name="user_id">
@@ -18,4 +17,3 @@
                     date_separator: '%s'),
                   "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
   <%= form.submit '送信' %>
-<% end %>
