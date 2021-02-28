@@ -19,6 +19,18 @@
         <span class="event_description">
           <%= event.description %>
         </span>
+    <%# <% @users. event[user_ids]%>
+        <%# <span class="evert_creater"> %>
+          <% UserEvent.all.where(id: event.id).each do |userevent| %>
+
+          <div><%= userevent.user_id %>>
+          <%=userevent.user.nickname %></div>
+
+<%# 中間テーブルで対象のイベントIDのUser＿idのみを表示させる。かつ、nicknameを表示 %>
+
+            <%# <%= userevent.user_id %>
+          <% end %>
+        <%# </span> %>
     </div>
   <% end %>
 </div>
