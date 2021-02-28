@@ -25,15 +25,19 @@
         <span class="event_description">
           <%= event.description %>
         </span>
-    <%# <% @users. event[user_ids]%>
-        <%# <span class="evert_creater"> %>
+
           <% @userevents.each do |userevent| %>
              <% if userevent.event_id == event.id %>
                <%= userevent.user.nickname %>
              
              <% end %>
           <% end %>
-        <%# </span> %>
+
+          <%= link_to "編集", event_path(event.id), class:"arrange" %>
+
+
+
+
     </div>
   <% end %>
 </div>
