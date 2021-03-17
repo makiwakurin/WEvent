@@ -1,0 +1,7 @@
+<div class="rooms">
+ <% current_user.rooms.each do |room| %>
+  <div class="room">
+  <%= link_to room.name, root_path %>
+  </div>
+ <%end%>
+</div>
