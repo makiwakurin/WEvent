@@ -13,7 +13,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.event = @event
     @task.user = User.find(params[:user_id])
-    binding.pry
     if @task.valid?
       @task.save
       redirect_to event_tasks_path(@event)

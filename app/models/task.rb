@@ -5,5 +5,12 @@ class Task < ApplicationRecord
 
   validates :name, presence: true, length:{maximum: 30}
   validates :description, length:{maximum: 200}
-  validates :deadline, length:{in: 5..20}
+  validates :deadline, presence: true
+  validate :deadline_cannot_be_in_the_past
+
+  def deadline_cannot_be_in_the_past
+    if deadline.present? && deadline < Date.today
+      errors.add(:deadline, "can't be in the past")
+    end
+  end
 end
