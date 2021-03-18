@@ -1,0 +1,4 @@
+<h1>タスク編集</h1>
+<%= form_with(model: [@event, @task], method: :patch, local: true) do |form| %>
+  <%= render partial: "form", locals: { form: form} %>
+<% end %>
