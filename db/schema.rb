@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2021_03_11_031944) do
   end
 
 
+  create_table "user_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_user_events_on_event_id"
+    t.index ["user_id"], name: "index_user_events_on_user_id"
+
+
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
     t.bigint "room_id"
@@ -82,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_031944) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_events", "events"
+  add_foreign_key "user_events", "users"
 
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"

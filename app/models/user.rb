@@ -19,7 +19,12 @@ class User < ApplicationRecord
     validates :address
   end
 
+
+  has_many :user_events
+  has_many :events, through: :user_events
+
   has_many :room_users
   has_many :rooms, through: :room_users
   has_many :messages
+
 end
