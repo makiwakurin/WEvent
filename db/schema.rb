@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_073531) do
+
+ActiveRecord::Schema.define(version: 2021_03_11_031944) do
+
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -22,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_073531) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+
   create_table "user_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
@@ -29,6 +32,43 @@ ActiveRecord::Schema.define(version: 2021_02_27_073531) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_user_events_on_event_id"
     t.index ["user_id"], name: "index_user_events_on_user_id"
+
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "room_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_room_users_on_room_id"
+    t.index ["user_id"], name: "index_room_users_on_user_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.date "deadline"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_tasks_on_event_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,4 +93,13 @@ ActiveRecord::Schema.define(version: 2021_02_27_073531) do
 
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
+
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "room_users", "rooms"
+  add_foreign_key "room_users", "users"
+
+  add_foreign_key "tasks", "events"
+  add_foreign_key "tasks", "users"
+
 end
