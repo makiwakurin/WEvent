@@ -1,7 +1,8 @@
-<div class="rooms">
- <% current_user.rooms.each do |room| %>
-  <div class="room">
-  <%= link_to room.name, root_path %>
+<div class="wrapper">
+  <div class="side-bar">
+   <%= render "side_bar" %>
   </div>
- <%end%>
+  <div class="main-chat">
+   <%= render "main_chat" %>
+  </div>
 </div>
