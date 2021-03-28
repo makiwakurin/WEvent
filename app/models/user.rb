@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :tasks, dependent: :destroy
+  has_many :events, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
   with_options presence: true do
@@ -16,4 +18,13 @@ class User < ApplicationRecord
     validates :city
     validates :address
   end
+
+
+  has_many :user_events
+  has_many :events, through: :user_events
+
+  has_many :room_users
+  has_many :rooms, through: :room_users
+  has_many :messages
+
 end

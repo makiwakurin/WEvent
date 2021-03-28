@@ -7,6 +7,12 @@
   <% @events.each do |event| %>
     <div class="content_event">
       <p><%= event.name %></p>
+
+        <span class="event_location">
+          <%= event.id %>
+        </span>
+
+
         <span class="event_location">
           <%= event.location %>
         </span>
@@ -19,6 +25,27 @@
         <span class="event_description">
           <%= event.description %>
         </span>
+
+
+          <% @userevents.each do |userevent| %>
+             <% if userevent.event_id == event.id %>
+               <%= userevent.user.nickname %>
+             
+             <% end %>
+          <% end %>
+
+          <%= link_to "編集", event_path(event.id), class:"arrange" %>
+
+
+
+
+        <%= link_to 'タスク作成', new_event_task_path(event) %>
+        <% if event.tasks.length > 0 %>
+          <%= link_to 'タスク一覧', event_tasks_path(event) %>
+        <% end %>
+
     </div>
   <% end %>
 </div>
+
+
