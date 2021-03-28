@@ -23,6 +23,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @task.user = User.find(params[:user_id])
   end
 
   def edit
@@ -53,4 +54,10 @@ class TasksController < ApplicationController
   def define_event
     @event = Event.find(params[:event_id])
   end
+
+  # def user_id_must_exist
+  #   if @task.user_id = "" || !@task.user_id
+  #     errors.add(:user_id, "person in charge must be checked")
+  #   end
+  # end
 end
