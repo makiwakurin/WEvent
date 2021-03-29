@@ -1,3 +1,7 @@
+<div class="event">
+  <%= link_to @task.event.name, event_path(@task.event.id) %>
+</div>
+
 <div class="task-body">
   <%= @task.name %>
     <%= @task.user.nickname%>

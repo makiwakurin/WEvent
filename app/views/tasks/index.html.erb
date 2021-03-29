@@ -1,5 +1,9 @@
 <%# <% if user_signed_in? %>
   <% @tasks.each do |task| %>
+    <div class="event">
+      <%= link_to task.event.name, event_path(task.event.id) %>
+    </div>
+
     <%= task.name %>
     <%= task.user.nickname%>
     <%= task.deadline%>
