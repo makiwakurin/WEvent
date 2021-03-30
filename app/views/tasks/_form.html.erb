@@ -2,7 +2,7 @@
 <%= form.text_field :name, placeholder: '課題名、30文字以内' %>
 <%= form.text_area :description, placeholder: 'タスク詳細、200文字以内'%>
 <label for="user_id">タスク担当を選択してください</label>
-<select name="user_id">
+<select name="user_ids[]" multiple>
     <option hidden value="1">タスク担当を選択してください</option>
     <% @event.users.all.each do |user| %>
     <option value= <%= user.id %>><%= user.nickname %></option>

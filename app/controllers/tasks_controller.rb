@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.event = @event
-    @task.user = User.find(params[:user_id])
+    @task.users = User.find(params[:user_ids])
     if @task.valid?
       @task.save
       redirect_to event_tasks_path(@event)
@@ -31,6 +31,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @task.users = User.find(params[:user_ids])
     if @task.valid?
       @task.update(task_params)
       redirect_to event_tasks_path(@event)
@@ -47,10 +48,16 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :event_id, :user_id)
+    params.require(:task).permit(:name, :description, :deadline, :event_id, user_ids: [])
   end
 
   def define_event
     @event = Event.find(params[:event_id])
   end
+
+  # def user_id_must_exist
+  #   if @task.user_id = "" || !@task.user_id
+  #     errors.add(:user_id, "person in charge must be checked")
+  #   end
+  # end
 end
