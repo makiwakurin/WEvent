@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tasks, dependent: :destroy
+  has_many :task_users
+  has_many :tasks, through: :task_users, dependent: :destroy
   has_many :events, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture

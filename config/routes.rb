@@ -7,10 +7,8 @@ Rails.application.routes.draw do
 
     resources :tasks
   end
-  
-  resources :rooms, only: [:new, :create] do
+
+  resources :rooms, only: [:index, :new, :create, :destroy] do
     resources :messages, only: [:index, :new, :create]
   end
-
 end
-
