@@ -26,6 +26,9 @@
           <%= event.description %>
         </span>
 
+        <%= link_to 'タスク作成', new_event_task_path(event) %> <%= link_to 'チャットルームへ', rooms_path(event) %>
+
+
 
           <% @userevents.each do |userevent| %>
              <% if userevent.event_id == event.id %>
@@ -39,7 +42,6 @@
 
 
 
-        <%= link_to 'タスク作成', new_event_task_path(event) %>
         <% if event.tasks.length > 0 %>
           <%= link_to 'タスク一覧', event_tasks_path(event) %>
         <% end %>
