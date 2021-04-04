@@ -1,4 +1,3 @@
-<%# <% if user_signed_in? %>
   <% @tasks.each do |task| %>
     <div class="event">
       <%= link_to task.event.name, event_path(task.event.id) %>
@@ -13,6 +12,3 @@
     <%= link_to '編集', edit_event_task_path(@event.id, task.id) %>
     <%= link_to 'タスクを消去', event_task_path(@event.id, task.id), method: :delete %>
   <% end %>
-<%# <% else %>
-  <%# <% %>
-<%# <% end %>
