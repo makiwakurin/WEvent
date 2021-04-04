@@ -6,35 +6,46 @@
 <div class="contents">
   <% @events.each do |event| %>
     <div class="content_event">
-      <p><%= event.name %></p>
 
-        <span class="event_location">
-          <%= event.id %>
-        </span>
+    <table class="event-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">ID</th>
+          <td class="detail-value"><%= event.id%></td>
+        </tr>
+        <tr>
+          <th class="detail-item">イベント名</th>
+          <td class="detail-value"><%= event.name%></td>
+        </tr>
+        <tr>
+          <th class="detail-item">場所</th>
+          <td class="detail-value"><%= event.location %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">ジャンル</th>
+          <td class="detail-value"><%= event.genre.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">日にち</th>
+          <td class="detail-value"><%= event.date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">説明</th>
+          <td class="detail-value"><%= event.description %></td>
+        </tr>
 
-
-        <span class="event_location">
-          <%= event.location %>
-        </span>
-        <span class="event_genre">
-          <%= event.genre_id %>
-        </span>
-        <span class="event_date">
-          <%= event.date %>
-        </span>
-        <span class="event_description">
-          <%= event.description %>
-        </span>
-
-
-          <% @userevents.each do |userevent| %>
-             <% if userevent.event_id == event.id %>
-               <%= userevent.user.nickname %>
-             
-             <% end %>
+        <% @userevents.each do |userevent| %>
+        <% if userevent.event_id == event.id %>
+        <tr>
+          <th class="detail-item">開催者</th>
+          <td class="detail-value"><%= userevent.user.nickname %></td>
+        </tr>
+            
+          <% end %>
           <% end %>
 
-          <%= link_to "編集", event_path(event.id), class:"arrange" %>
+      </tbody>
+    </table>
 
 
 
