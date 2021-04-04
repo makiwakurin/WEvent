@@ -42,6 +42,37 @@
         </tr>
             
           <% end %>
+
+      <p><%= event.name %></p>
+
+        <span class="event_location">
+          <%= event.id %>
+        </span>
+
+
+        <span class="event_location">
+          <%= event.location %>
+        </span>
+        <span class="event_genre">
+          <%= event.genre_id %>
+        </span>
+        <span class="event_date">
+          <%= event.date %>
+        </span>
+        <span class="event_description">
+          <%= event.description %>
+        </span>
+
+        <%= link_to 'タスク作成', new_event_task_path(event) %> <%= link_to 'チャットルームへ', rooms_path(event) %>
+
+
+
+          <% @userevents.each do |userevent| %>
+             <% if userevent.event_id == event.id %>
+               <%= userevent.user.nickname %>
+             
+             <% end %>
+
           <% end %>
 
       </tbody>
@@ -50,7 +81,6 @@
 
 
 
-        <%= link_to 'タスク作成', new_event_task_path(event) %>
         <% if event.tasks.length > 0 %>
           <%= link_to 'タスク一覧', event_tasks_path(event) %>
         <% end %>
