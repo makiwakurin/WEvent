@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :user_events
   has_many :users, through: :user_events
   has_many :tasks, dependent: :destroy
+  has_many :rooms, dependent: :destroy
 
 
   validates :name, :location, :date, :description, presence: true
