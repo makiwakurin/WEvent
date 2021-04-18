@@ -3,4 +3,5 @@ class Room < ApplicationRecord
   has_many :users, through: :room_users, dependent: :destroy
   validates :name, presence: true
   has_many :messages, dependent: :destroy
+  belongs_to :event
 end
