@@ -1,73 +1,94 @@
-<h2>Sign up</h2>
-<%= render 'shared/error_messages', model: @user %>
+<div class="container-fluid  w-100">
+<div class=" d-flex justify-content-center w-100">
+  <div class="mb-3 mt-4 w-75">
+    <h3 class="text-center">登録</h3>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="mb-3 ">
+        <%= f.label :nickname, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class:"form-control" %>
+        </div>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+     <div class="mb-3 ">
+        <%= f.label :email, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+        </div>
+      </div>
 
+      <div class="mb-3">
+        <%= f.label :password, class:"form-label align-items-center" %><br />
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100 ">
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-  </div>
+      <div class="mb-3">
+        <% if devise_mapping.rememberable? %>
+        <%=  f.label :password_confirmation, class:"form-label align-items-center" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      </div>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="mb-3 dropdown">
+        <%= f.label :gender_id, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.select :gender_id, [["男", 1], ["女", 2]], {prompt: "選択してください"}, class:"form-control btn btn-light dropdown-toggle" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <div class="mb-3 ">
+        <%= f.label :hobby, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_area :hobby, autofocus: true, autocomplete: "hobby", class:"form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+       <div class="mb-3 ">
+        <%= f.label :comment, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_area :comment, autofocus: true, autocomplete: "comment", class:"form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :gender_id %><br />
-    <%= f.select :gender_id, [["男", 1], ["女", 2]], include_blank: "選択して下さい" %>
-  </div>
+       <div class="mb-3 ">
+        <%= f.label :age, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_field :age, autofocus: true, autocomplete: "age", class:"form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :hobby %><br />
-    <%= f.text_area :hobby, autofocus: true, autocomplete: "hobby" %>
-  </div>
+       <div class="mb-3 ">
+        <%= f.label :prefecture_id, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"form-control btn btn-light dropdown-toggle") %>
+        </div>
+      </div>
 
-    <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment, autofocus: true, autocomplete: "comment" %>
-  </div>
+       <div class="mb-3 ">
+        <%= f.label :city, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_field :city, autofocus: true, autocomplete: "city", class:"form-control" %>
+        </div>
+      </div>
 
-    <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
-  </div>
+       <div class="mb-3 ">
+        <%= f.label :address, class:"form-label align-items-center" %><br />
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"form-control" %>
+        </div>
+      </div>
 
-    <div class="field">
-    <%= f.label :prefecture_id %><br />
-    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}) %>
-  </div>
-
-      <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
-  </div>
-
-      <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
-
-
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions mb-3">
+    <%= f.submit "登録", class:"btn btn-primary btn-lg" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="mb-3 mt-5">
+    <%= render "devise/shared/links" %>
+    </div>
+</div>
