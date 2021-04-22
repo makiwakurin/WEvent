@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -14,7 +14,7 @@
       <div class="logo"><%= link_to 'WEvent', root_path %></div>
       <% if user_signed_in? %>
         <div class="username"><%= current_user.nickname %></div>
-        <div class="login-logout-bnt"><%= link_to 'ログアウト', destroy_user_session_path(current_user.id), method: :delete %></div>
+        <div class="login-logout-bnt"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
       <% else %>
         <div class="login-logout-bnt"><%= link_to 'ログイン', new_user_session_path %></div>
         <div class="login-logout-bnt"><%= link_to '登録', new_user_registration_path %></div>
