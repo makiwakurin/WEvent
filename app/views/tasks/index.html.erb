@@ -1,14 +1,33 @@
-  <% @tasks.each do |task| %>
-    <div class="event">
-      <%= link_to task.event.name, event_path(task.event.id) %>
+<div class="container-fluid w-100 d-flex flex-column justify-content-center align-items-center">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="mb-3 mt-4">
+      <h5 class="my-3 text-center mt-5">イベント：　<%= link_to @event.name, event_path(@event.id) %></h5>
     </div>
+  </div>
 
-    <%= task.name %>
-    <% task.users.each do |user| %>
-     <%= user.nickname %>
+  <div class="row  col-xl-8 col-lg-10 col-sm-12">
+    <% @tasks.each do |task| %>
+      <div class="accordion py-2" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <%= task.name %>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <p>タスク担当：
+              <% task.users.each do |user| %>
+                <%= user.nickname %>
+              <% end %><p>
+              <p>タスク締め切り：<%= task.deadline%></p>
+              <%= link_to '詳細', event_task_path(@event.id, task.id), class:"btn btn-sm btn-outline-secondary me-2", method: :get%>
+              <%= link_to '編集', edit_event_task_path(@event.id, task.id), class:"btn btn-sm btn-outline-secondary me-2" %>
+              <%= link_to 'タスクを消去', event_task_path(@event.id, task.id), class:"btn btn-sm btn-outline-secondary me-2", method: :delete %>
+            </div>
+          </div>
+       </div>
+    </div>
     <% end %>
-    <%= task.deadline%>
-    <%= link_to '詳細', event_task_path(@event.id, task.id), method: :get%>
-    <%= link_to '編集', edit_event_task_path(@event.id, task.id) %>
-    <%= link_to 'タスクを消去', event_task_path(@event.id, task.id), method: :delete %>
-  <% end %>
+  </div>
+</div>
