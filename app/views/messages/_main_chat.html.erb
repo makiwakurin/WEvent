@@ -1,27 +1,31 @@
- <div class="chat-header"> 
-    <div class="left-header">
-     <div class="header-title">
+ <div class="card p-0">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="chat-name">
       <span class = "chat-name">チャットルーム名:</span>  <%=  @room.name %>
-     </div>
     </div>
-  <div class="right-header">
-   <div class="header-button">
-    <%=link_to "チャットを終了する" , room_path(@room), method: :delete, class: 'endbottun' %>
-   </div> 
-  </div>
- </div>
 
- <div class="messages">
-  <%= render partial: 'message', collection: @messages %>
- </div>
-
- <%= form_with model: [@room, @message], class: "form" ,local: true do  |f| %>
-  <div class="form-input">
-    <%= f.text_field :content, class: 'form-message', placeholder: 'type a message' %>
-    <label class = "form-image">
-     <span class = "image-file">画像</span>
-     <%= f.file_field :image, class: 'hidden' %>
-    </label>
+    <div class="header-button">
+    <%=link_to "チャットを終了する" , room_path(@room), method: :delete, class: 'endbottun btn btn-outline-primary' %>
+   </div>
   </div>
-  <%= f.submit '送信', class:'form-submit' %>
-  <%end%>
+
+  <!--messages-->
+  <div class="card-body">
+    <%= render partial: 'message', collection: @messages %>
+  </div>
+
+  <div class="card-footer">
+      <%= form_with model: [@room, @message], class: "form" ,local: true do  |f| %>
+      <div class="form-input d-flex flex-column">
+        <%= f.text_field :content, class: 'form-message my-1 py-2 ', placeholder: 'type a message' %>
+        <label class = "form-image my-1">
+          <span class = "image-file me-1">画像</span>
+          <%= f.file_field :image, class: 'hidden me-1 pb-2' %>
+        </label>
+      </div>
+      <div><%= f.submit '送信', class:'form-submit btn btn-primary' %></div>
+    <%end%>
+  </div>
+</div>
+
+

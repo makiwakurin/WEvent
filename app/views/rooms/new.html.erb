@@ -1,24 +1,41 @@
-<div class="chat-room-form">
- <h1>チャットルーム</div>
- <%= form_with model: @room, local: true do |f| %>
-  <div class="chat-room-form-field">
-   <%= f.label :チャットルーム名, class: 'chat-room-name' %>
-  </div>
-  <div>
-   <%= f.text_field :name, class: 'chat__room_name ', placeholder: 'チャットルーム名を入力してください' %>
-  </div>
-  <div>
-   <div class='chat-room-form__field--right'>
-   <select name="room[user_ids[]">
-    <option value="">チャットするユーザーを選択してください</option> 
-     <% User.all.where.not(id: current_user.id).each do |user| %>
-    <option value=<%= user.id %>><%= user.nickname %></option> 
+
+
+<div class="container-fluid  w-100 chat-room-form">
+<div class=" d-flex justify-content-center w-100">
+  <div class="mb-3 mt-4 w-75">
+    <h3 class="text-center">チャットルーム</h3>
+    <%= form_with model: @room, local: true do |f| %>
+      <div class="mb-3 ">
+        <label  class="form-label align-items-center chat-room-name">チャットルーム名</label>
+        <div class="col-sm-8 d-flex flex-column align-items-center w-100">
+          <%= f.text_field :name, class: 'chat__room_name form-control ', placeholder: 'チャットルーム名を入力してください' %>
+        </div>
+      </div>
+
+      <div class="pt-2 mb-3 dropdown　chat-room-form__field--right">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">チャットするユーザーを選択してください</button>
+          <ul class="dropdown-menu pb-0" aria-labelledby="dropdownMenuButton1">
+            <ul>
+              <select name="room[user_ids[]" multiple class="border-0 w-100 pb-0">
+                <% User.all.where.not(id: current_user.id).each do |user| %>
+                  <li><option class="dropdown-item align-items-center w-100 py-3 pb-0", value= <%= user.id %>><%= user.nickname %></option></li>
+                <% end %>
+                </select>
+            </ul>
+            <br>
+          </ul>
+        </div>
+      <input name="room[user_ids][]" type="hidden" value=<%=current_user.id%>>
+      <%= f.submit "送信", class:"btn btn-primary btn-lg mt-4" %>
     <% end %>
-   </select>
-     <input name="room[user_ids][]" type="hidden" value=<%=current_user.id%>>
-   <br>
-   <%= f.submit :"送信"%>
-   </div>
   </div>
-  <%end%>
 </div>
+</div>
+
+
+
+
+
+
+
+
