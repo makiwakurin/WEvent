@@ -1,8 +1,10 @@
-<div class="wrapper">
-  <div class="side-bar">
-   <%= render "side_bar" %>
-  </div>
-  <div class="main-chat">
-   <%= render "main_chat" %>
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-sm bg-secondary d-flex flex-column">
+      <%= render "side_bar" %>
+    </div>
+    <div class="row col-sm-9 bg-white">
+      <%= render "main_chat" %>
+    </div>
   </div>
 </div>
