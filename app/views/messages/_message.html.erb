@@ -1,6 +1,8 @@
-<div class="username">  
- <%= message.user.nickname%>
-</div>
-<div class="content">
- <%= message.content %>
+<div class="card border" style="width: 18rem;">
+  <div class="card-header username bg-gray text-muted">
+    <%= message.user.nickname%>
+  </div>
+  <div class="card-body bg-light">
+    <%= message.content %>
+  </div>
 </div>

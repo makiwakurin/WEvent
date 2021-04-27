@@ -1,17 +1,19 @@
-<div class="side-bar-header">
- <div class="header-name">
-  <%= link_to current_user.nickname %>
+<div class="side-bar-header py-2">
+ <div class="header-name text-decoration-none text-white">
+  <%# <%= link_to current_user.nickname, class:"text-decoration-none text-white" %>
+  <h4><%= current_user.nickname %></h4>
  </div>
  <div class="create-room">
-  <%= link_to "チャットを作成する" , new_room_path %>
+  <%= link_to "チャットを作成する" , new_room_path, class:"btn btn-primary ms-auto ms-5 me-3 my-2" %>
  </div>
 </div>
 
-<div class="rooms">
+<!-- all chat rooms list -->
+<div class="d-flex flex-column justify-content-start me-1 w-90">
  <% current_user.rooms.each do |room|%>
   <div class="room">
    <div class="room-name">
-   <%= link_to room.name, room_messages_path(room) ,class: "roomall-name"%>
+   <%= link_to room.name, room_messages_path(room) ,class: "btn btn-light w-75 p-2 my-1"%>
    </div>
   </div>
  <%end%>
