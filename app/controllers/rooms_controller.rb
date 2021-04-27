@@ -1,5 +1,9 @@
 class RoomsController < ApplicationController
 
+  def index
+    @event = params[:id]
+  end
+
   def new
     @room = Room.new
   end
