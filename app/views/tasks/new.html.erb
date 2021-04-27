@@ -1,4 +1,4 @@
-<h1>タスク作成</h1>
+<h3 class="text-center py-5">タスク作成</h3>
 <%= form_with(model: [@event, @task], url:event_tasks_path(@event), local: true) do |form| %>
   <%= render partial: "form", locals: { form: form} %>
 <% end %>
